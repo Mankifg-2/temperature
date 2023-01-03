@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Flask App </title>
+    <title>Live Temperature</title>
 
 
     <!-- Bootstraps Java Scipts Links -->
@@ -79,23 +79,27 @@
                     }
                 },
                 title: {
-                    text: 'Live random data'
+                    text: 'Temperature (time)'
                 },
                 xAxis: {
-                    type: 'datetime',
+                    //type: 'datetime',
                     tickPixelInterval: 150,
-                    maxZoom: 20 * 1000
+                    maxZoom: 20 * 1000,
+                    title: {
+                        text: 't[h:m:s]',
+                        margin: 80
+                    }
                 },
                 yAxis: {
                     minPadding: 0.2,
                     maxPadding: 0.2,
                     title: {
-                        text: 'Value',
+                        text: 'T[°C]',
                         margin: 80
                     }
                 },
                 series: [{
-                    name: 'Random data',
+                    name: 'Sensor 1',
                     data: []
                 }]
             });
