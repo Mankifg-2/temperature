@@ -19,7 +19,6 @@ device_file = device_folder + '/w1_slave'
 
 
 
-start_time = time.time()
 dir1 = f"{base_dir}28-0118762581ff/w1_slave"
 
 def read_temp_raw(dir):
@@ -54,7 +53,7 @@ def main():
 
 @app.route('/data', methods=["GET", "POST"])
 def data():
-    data = [round(time.time() - start_time), getdata()]
+    data = [time.time() * 1000, getdata()]
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
     return response
