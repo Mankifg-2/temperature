@@ -45,9 +45,11 @@ def read_temp(dir):
 
 app = Flask(__name__)
 
-def getdata1(dir):
-    return read_temp(dir)
+'''def getdata1(dir):
+    return read_temp(dir)'''
 
+def getdata1(dir):
+    return random.randint(10,40)
 
 def getdata2(dir):
     return random.randint(10,40)
