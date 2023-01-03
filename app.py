@@ -49,7 +49,7 @@ def getdata1(dir):
     return read_temp(dir)
 
 
-def getdata2():
+def getdata2(dir):
     return random.randint(10,40)
 
 @app.route('/', methods=["GET", "POST"])
@@ -67,7 +67,7 @@ def data():
 @app.route('/data2', methods=["GET", "POST"])
 def data2():
     data2 = [time.time() * 1000, getdata2(dir2)]
-    response2 = make_response(json.dumps(data))
+    response2 = make_response(json.dumps(data2))
     response2.content_type = 'application/json'
     return response2
 
