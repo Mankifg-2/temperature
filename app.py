@@ -66,10 +66,10 @@ def data():
 
 @app.route('/data2', methods=["GET", "POST"])
 def data():
-    data = [time.time() * 1000, getdata2(dir2)]
-    response = make_response(json.dumps(data))
-    response.content_type = 'application/json'
-    return response
+    data2 = [time.time() * 1000, getdata2(dir2)]
+    response2 = make_response(json.dumps(data))
+    response2.content_type = 'application/json'
+    return response2
 
 
 if __name__ == "__main__":
