@@ -12,20 +12,26 @@ os.system('sudo modprobe w1-gpio')
 os.system('sudo modprobe w1-therm')
  
 base_dir = '/sys/bus/w1/devices/'
+'''
 device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
- 
-def read_temp_raw():
-    f = open(device_file, 'r')
+'''
+
+
+
+dir1 = f"{base_dir}28-0118762581ff/w1_slave"
+
+def read_temp_raw(dir):
+    f = open(dir, 'r')
     lines = f.readlines()
     f.close()
     return lines
  
-def read_temp():
-    lines = read_temp_raw()
+def read_temp(dir):
+    lines = read_temp_raw(dir)
     while lines[0].strip()[-3:] != 'YES':
         time.sleep(0.2)
-        lines = read_temp_raw()
+        lines = read_temp_raw(dir)
     equals_pos = lines[1].find('t=')
     if equals_pos != -1:
         temp_string = lines[1][equals_pos+2:]
@@ -38,7 +44,7 @@ def read_temp():
 app = Flask(__name__)
 
 def getdata():
-    return read_temp
+    return read_temp(dir1)
 
 @app.route('/', methods=["GET", "POST"])
 def main():
