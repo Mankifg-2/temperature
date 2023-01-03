@@ -20,6 +20,8 @@ device_file = device_folder + '/w1_slave'
 
 
 dir1 = f"{base_dir}28-0118762581ff/w1_slave"
+dir2 = ""
+
 
 def read_temp_raw(dir):
     f = open(dir, 'r')
@@ -53,10 +55,18 @@ def main():
 
 @app.route('/data', methods=["GET", "POST"])
 def data():
-    data = [time.time() * 1000, getdata()]
+    data = [time.time() * 1000, getdata(dir1)]
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
     return response
+
+@app.route('/data2', methods=["GET", "POST"])
+def data():
+    data = [time.time() * 1000, getdata(dir2)]
+    response = make_response(json.dumps(data))
+    response.content_type = 'application/json'
+    return response
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
