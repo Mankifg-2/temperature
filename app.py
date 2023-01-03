@@ -45,8 +45,8 @@ def read_temp(dir):
 
 app = Flask(__name__)
 
-def getdata1():
-    return read_temp(dir1)
+def getdata1(dir):
+    return read_temp(dir)
 
 
 def getdata2():
