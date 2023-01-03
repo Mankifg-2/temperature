@@ -45,8 +45,12 @@ def read_temp(dir):
 
 app = Flask(__name__)
 
-def getdata():
+def getdata1():
     return read_temp(dir1)
+
+
+def getdata2():
+    return random.randint(10,40)
 
 @app.route('/', methods=["GET", "POST"])
 def main():
@@ -55,14 +59,14 @@ def main():
 
 @app.route('/data', methods=["GET", "POST"])
 def data():
-    data = [time.time() * 1000, getdata(dir1)]
+    data = [time.time() * 1000, getdata1(dir1)]
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
     return response
 
 @app.route('/data2', methods=["GET", "POST"])
 def data():
-    data = [time.time() * 1000, getdata(dir2)]
+    data = [time.time() * 1000, getdata2(dir2)]
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
     return response
