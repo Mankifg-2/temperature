@@ -65,7 +65,7 @@ def data():
     return response
 
 @app.route('/data2', methods=["GET", "POST"])
-def data():
+def data2():
     data2 = [time.time() * 1000, getdata2(dir2)]
     response2 = make_response(json.dumps(data))
     response2.content_type = 'application/json'
