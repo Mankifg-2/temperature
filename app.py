@@ -20,8 +20,6 @@ device_file = device_folder + '/w1_slave'
 
 
 dir1 = f"{base_dir}28-0118762581ff/w1_slave"
-dir2 = ""
-
 
 def read_temp_raw(dir):
     f = open(dir, 'r')
@@ -45,14 +43,8 @@ def read_temp(dir):
 
 app = Flask(__name__)
 
-'''def getdata1(dir):
-    return read_temp(dir)'''
-
-def getdata1(dir):
-    return random.randint(10,40)
-
-def getdata2(dir):
-    return random.randint(10,40)
+def getdata():
+    return read_temp(dir1)
 
 @app.route('/', methods=["GET", "POST"])
 def main():
@@ -61,18 +53,10 @@ def main():
 
 @app.route('/data', methods=["GET", "POST"])
 def data():
-    data = [time.time() * 1000, getdata1(dir1)]
+    data = [time.time() * 1000, getdata()]
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
     return response
-
-@app.route('/data2', methods=["GET", "POST"])
-def data2():
-    data2 = [time.time() * 1000, getdata2(dir2)]
-    response2 = make_response(json.dumps(data2))
-    response2.content_type = 'application/json'
-    return response2
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)

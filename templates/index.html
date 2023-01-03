@@ -68,23 +68,6 @@
                 setTimeout(requestData, 2000);
             });
         }
-        
-        function requestData2()
-        {
-            var requests2 = $.get('/data2');
-
-            var tm2 = requests2.done(function (result2)
-            {
-                var series2 = chart.series2[1],
-                    shift2 = series2.data.length > 20;
-
-                chart.series[1].addPoint(result2, true,shift2);
-
-                setTimeout(requestData2,2000);
-            })
-
-        }
-
 
         $(document).ready(function() {
             chart = new Highcharts.Chart({
@@ -92,7 +75,7 @@
                     renderTo: 'data-container',
                     defaultSeriesType: 'spline',
                     events: {
-                        load: requestData2
+                        load: requestData
                     }
                 },
                 title: {
@@ -114,12 +97,7 @@
                 series: [{
                     name: 'Random data',
                     data: []
-                },
-                {
-                    name:'Second random data',
-                    data: []
-                }
-            ]
+                }]
             });
 
         });
